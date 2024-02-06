@@ -34,7 +34,7 @@ if (process.env.NODE_ENV == "development") {
 app.use("/Register", singnupRouter);
 app.use("/Patient", patientRouter);
 app.use("/Doctor", doctorRouter);
-
+app.use("/get",allusers);
 app.all("*", (req, res, next) => {
   next(new APIerrors(`The route ${req.originalUrl} is not found`, 400));
 });
