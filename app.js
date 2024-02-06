@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const cors = require("cors");
 const singnupRouter = require("./Routes/userRoute");
 const DBConnection = require("./Config/DB");
 const errorHandeling = require("./Middlewares/globalErrors");
@@ -14,6 +15,8 @@ DBConnection();
 const app = express();
 app.use(express.json());
 
+// cors to Access APIs
+app.use(cors());
 //  middleware
 if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
