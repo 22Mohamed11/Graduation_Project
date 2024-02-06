@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
+const compression = require("compression");
 const singnupRouter = require("./Routes/userRoute");
 const DBConnection = require("./Config/DB");
 const errorHandeling = require("./Middlewares/globalErrors");
@@ -9,14 +10,20 @@ const APIerrors = require("./Utils/errors");
 const patientRouter = require("./Routes/patientRoute");
 const doctorRouter = require("./Routes/doctorRoute");
 dotenv.config({});
+
 // connect with DB
 DBConnection();
+
 // express app
 const app = express();
 app.use(express.json());
 
 // cors to Access APIs
 app.use(cors());
+
+// Compress Response
+app.use(compression());
+
 //  middleware
 if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
