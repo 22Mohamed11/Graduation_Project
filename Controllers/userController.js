@@ -2,6 +2,8 @@ const expressAsyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const Jwt = require("jsonwebtoken");
+//......................................................................
+const {getAllMethod} =require('../Controllers/handlerFactor');
 const userModel = require("../Models/usersSchema");
 const APIerrors = require("../Utils/errors");
 const sendEmail = require("../Utils/sendEmail");
@@ -142,3 +144,7 @@ exports.resetPassword = expressAsyncHandler(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
   res.status(200).json({ success: true, data: "Password has been changed" });
 });
+
+
+//.........................................................
+exports.getUsers = getAllMethod(userModel,"user");
