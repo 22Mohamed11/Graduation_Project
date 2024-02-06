@@ -31,7 +31,7 @@ if (process.env.NODE_ENV == "development") {
 }
 
 // Mount Routes
-app.use("/Diabest", singnupRouter);
+app.use("/Register", singnupRouter);
 app.use("/Patient", patientRouter);
 app.use("/Doctor", doctorRouter);
 
