@@ -5,7 +5,7 @@ const {
   forgetPassword,
   verifyResetPasswordCode,
   resetPassword,
-  getUsers,
+  // getUsers,
 } = require("../Controllers/userController.js");
 
 const {
@@ -20,7 +20,7 @@ router.post("/login", loginValidator, login);
 router.post("/forgetPassword", forgetPassword);
 router.post("/verifyResetPasswordCode", verifyResetPasswordCode);
 router.put("/resetPassword", resetPasswordValidator, resetPassword);
-router.get("/allusers", getUsers)
+//router.get("/allusers", getUsers)
     //.post(protectRoutes, allowedTo('admin'), uploadUserImage, resizeImage, createUserValidator, createUser)
 
 module.exports = router;

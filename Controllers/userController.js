@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const Jwt = require("jsonwebtoken");
 //......................................................................
-const {getAllMethod} =require('../Controllers/handlerFactor');
+//const {getAllMethod} =require('../Controllers/handlerFactor');
 const userModel = require("../Models/usersSchema");
 const APIerrors = require("../Utils/errors");
 const sendEmail = require("../Utils/sendEmail");
@@ -147,4 +147,4 @@ exports.resetPassword = expressAsyncHandler(async (req, res, next) => {
 
 
 //.........................................................
-exports.getUsers = getAllMethod(userModel,"user");
+// exports.getUsers = getAllMethod(userModel,"user");
