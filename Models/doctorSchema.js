@@ -6,7 +6,8 @@ const doctorSchema = new mongoose.Schema({
     type: String,
   },
   specialization: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
+    ref: "Specialization", // The Specialization model is required for this to work
     required: true,
   },
   phoneNumber: {
@@ -34,10 +35,10 @@ const doctorSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     default: null,
   },
-  clinicLocation: {
-    type: mongoose.Schema.Types.Mixed,
-    default: null,
-  },
+  // clinicLocation: {
+  //   type: mongoose.Schema.Types.Mixed,
+  //   default: null,
+  // },
 });
 
 const doctorModel = mongoose.model("Doctor information", doctorSchema);
