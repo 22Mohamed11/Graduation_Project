@@ -2,10 +2,10 @@ const expressAsyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
 const Jwt = require("jsonwebtoken");
-//......................................................................
-//const {getAllMethod} =require('../Controllers/handlerFactor');
+const sharp = require("sharp");
+const { uploadSingleimage } = require("../Middlewares/uploadimagesMiddleware");
 const userModel = require("../Models/usersSchema");
-const APIerrors = require("../Utils/errors");
+const APIerrors = require("../Utils/Errors.js");
 const sendEmail = require("../Utils/sendEmail");
 const { createToken, createResetToken } = require("../Utils/createToken");
 
@@ -23,6 +23,22 @@ exports.login = expressAsyncHandler(async (req, res, next) => {
   }
   const token = createToken(user._id);
   res.status(200).json({ user, token });
+});
+
+// Profile Images
+exports.uploadUserImage = uploadSingleimage("profileImage");
+exports.resizeImage = expressAsyncHandler(async (req, res, next) => {
+  if (req.file) {
+    const fileName = `user-${Date.now()}.jpeg`;
+    await sharp(req.file.buffer)
+      .resize(450, 400)
+      .toFormat("jpeg")
+      .jpeg({ quality: 90 })
+      .toFile(`uploads/usersImages/${fileName}`);
+    req.body.profileImage = fileName;
+    res.json({ message: "success" });
+  }
+  // next();
 });
 
 exports.forgetPassword = expressAsyncHandler(async (req, res, next) => {
@@ -144,7 +160,3 @@ exports.resetPassword = expressAsyncHandler(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
   res.status(200).json({ success: true, data: "Password has been changed" });
 });
-
-
-//.........................................................
-// exports.getUsers = getAllMethod(userModel,"user");
