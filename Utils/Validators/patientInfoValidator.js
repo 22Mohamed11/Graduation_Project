@@ -8,13 +8,6 @@ exports.patientValidator = [
     .isNumeric()
     .isLength({ min: 2, max: 3 })
     .withMessage("provide a valid age between 0 and 999."),
-  // .custom((val) =>
-  //   patientModel.findOne({ age: val }).then((value) => {
-  //     if (value == 0) {
-  //       return Promise.reject(new Error("The Age is not acceptable"));
-  //     }
-  //   })
-  //),
   check("weight")
     .notEmpty()
     .withMessage("Weight is required")
