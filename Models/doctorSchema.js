@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const GeoJSON = require("geojson");
 // Define the Patient Schema
 const doctorSchema = new mongoose.Schema({
   fullName: {
@@ -35,10 +34,6 @@ const doctorSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Mixed,
     default: null,
   },
-  // clinicLocation: {
-  //   type: mongoose.Schema.Types.Mixed,
-  //   default: null,
-  // },
 });
 
 const doctorModel = mongoose.model("Doctor information", doctorSchema);
