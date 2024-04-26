@@ -6,6 +6,7 @@ const {
   forgetPassword,
   verifyResetPasswordCode,
   resetPassword,
+  updateLoggedUserPassword,
   uploadUserImage,
   resizeImage,
 } = require("../Controllers/userController.js");
@@ -14,6 +15,7 @@ const {
   signUpValidator,
   loginValidator,
   resetPasswordValidator,
+  updateLoggedUserPasswordValidator,
 } = require("../Utils/Validators/signupValidator.js");
 
 router.post("/signup", signUpValidator, signUp);
@@ -22,6 +24,11 @@ router.post("/forgetPassword", forgetPassword);
 router.post("/verifyResetPasswordCode", verifyResetPasswordCode);
 router.put("/resetPassword", resetPasswordValidator, resetPassword);
 router.put("/uploadUserImage", uploadUserImage, resizeImage);
+router.put(
+  "/editProfile/:_id/changePassword",
+  updateLoggedUserPasswordValidator,
+  updateLoggedUserPassword
+);
 router.get("/getUser/:_id", async (req, res) => {
   const userId = req.params._id;
   const user = await userModel.findById(userId);

@@ -2,6 +2,8 @@ const { check } = require("express-validator");
 const { validatorMiddleware } = require("../../Middlewares/Validator");
 const userModel = require("../../Models/usersSchema");
 const slugify = require("slugify");
+const bcrypt = require("bcryptjs");
+const Jwt = require("jsonwebtoken");
 
 exports.signUpValidator = [
   //checking if the Full Name exists in database or not
@@ -99,5 +101,54 @@ exports.resetPasswordValidator = [
     .withMessage("confirm password is required")
     .isLength({ min: 6, max: 20 })
     .withMessage("confirm Password should be between 6 and 20"),
+  validatorMiddleware,
+];
+
+exports.updateLoggedUserPasswordValidator = [
+  check("currentPassword")
+    .notEmpty()
+    .withMessage(" You Must Enter Your current Password")
+    .isLength({ min: 6, max: 20 })
+    .withMessage("Password must be at least 6 char and at most 14 char"),
+
+  check("confirmPassword")
+    .notEmpty()
+    .withMessage("You Must Enter Password Confirm")
+    .isLength({ min: 6, max: 20 })
+    .withMessage(
+      "Password Confirmation must be at least 6 char and at most 14 char"
+    ),
+  check("password")
+    .notEmpty()
+    .withMessage("You Must Enter New Password")
+    .isLength({ min: 6, max: 20 })
+    .withMessage(
+      "Password Confirmation must be at least 6 char and at most 14 char"
+    )
+    .custom(async (val, { req }) => {
+      let token;
+      if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith("Bearer")
+      ) {
+        token = req.headers.authorization.split(" ")[1];
+      }
+      if (!token) {
+        return Promise.reject(new Error("token not found"));
+      }
+      const decoded = Jwt.verify(token, process.env.JWT_SECRET_KEY);
+      const user = await userModel.findById(decoded._id);
+      const isCorrectPassword = await bcrypt.compare(
+        req.body.currentPassword,
+        user.password
+      );
+      if (!isCorrectPassword) {
+        throw new Error("current Password is wrong");
+      }
+      if (val !== req.body.confirmPassword) {
+        throw new Error("Passwords do not match");
+      }
+      return true;
+    }),
   validatorMiddleware,
 ];
