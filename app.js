@@ -10,10 +10,6 @@ const APIerrors = require("./Utils/Errors.js");
 const patientRouter = require("./Routes/patientRoute");
 const doctorRouter = require("./Routes/doctorRoute");
 const specializationRouter = require("./Routes/specializationRoute.js");
-//const feetRouter = require("./Routes/deepRoutes/feetRoute.js");
-
-// const uploadUserImage = require ("./Controllers/userController.js")
-// const classifyImage = require('./classify_image');
 
 dotenv.config({});
 
@@ -42,7 +38,6 @@ app.use("/Register", singnupRouter);
 app.use("/Patient", patientRouter);
 app.use("/Doctor", doctorRouter);
 app.use("/Specialization", specializationRouter);
-//app.use("/feet" ,feetRouter )
 app.all("*", (req, res, next) => {
   next(new APIerrors(`The route ${req.originalUrl} is not found`, 400));
 });
