@@ -52,7 +52,7 @@ const patientSchema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  // For Female 
+  // For Female
   oralContraceptives: {
     type: Boolean,
     required: true,
