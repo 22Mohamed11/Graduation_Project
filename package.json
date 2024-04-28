@@ -6,7 +6,7 @@
     "dev": "nodemon app.js"
   },
   "engines": {
-    "node": "22.0.0"
+    "node": "20.12.2"
   },
   "keywords": [],
   "author": "",
