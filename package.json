@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "nodemon app.js"
   },
-  "engines": {
-    "node": "20.12.2"
-  },
+  // "engines": {
+    // "node": "20.12.2"
+  // },
   "keywords": [],
   "author": "",
   "license": "ISC",
