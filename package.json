@@ -7,6 +7,9 @@
   },
   "keywords": [],
   "author": "",
+  "engines": {
+    "node": "20.12.2"
+  },
   "license": "ISC",
   "dependencies": {
     "@mapbox/node-pre-gyp": "^1.0.11",
