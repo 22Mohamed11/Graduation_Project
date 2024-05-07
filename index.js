@@ -10,7 +10,7 @@ const APIerrors = require("./Utils/Errors.js");
 const patientRouter = require("./Routes/patientRoute.js");
 const doctorRouter = require("./Routes/doctorRoute.js");
 const specializationRouter = require("./Routes/specializationRoute.js");
-import { SpeedInsights } from "@vercel/speed-insights/next"
+//import { SpeedInsights } from "@vercel/speed-insights/next"
 //const organsRouter = require("./Routes/organsRoute.js");
 
 dotenv.config({});
