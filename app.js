@@ -10,6 +10,8 @@ const APIerrors = require("./Utils/Errors.js");
 const patientRouter = require("./Routes/patientRoute");
 const doctorRouter = require("./Routes/doctorRoute");
 const specializationRouter = require("./Routes/specializationRoute.js");
+import { SpeedInsights } from "@vercel/speed-insights/next"
+//const organsRouter = require("./Routes/organsRoute.js");
 
 dotenv.config({});
 
@@ -38,6 +40,7 @@ app.use("/Register", singnupRouter);
 app.use("/Patient", patientRouter);
 app.use("/Doctor", doctorRouter);
 app.use("/Specialization", specializationRouter);
+//app.use("/Organs,organsRouter");
 app.all("*", (req, res, next) => {
   next(new APIerrors(`The route ${req.originalUrl} is not found`, 400));
 });
