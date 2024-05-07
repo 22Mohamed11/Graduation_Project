@@ -3,12 +3,12 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const cors = require("cors");
 const compression = require("compression");
-const singnupRouter = require("./Routes/userRoute");
-const DBConnection = require("./Config/DB");
-const errorHandeling = require("./Middlewares/globalErrors");
+const singnupRouter = require("./Routes/userRoute.js");
+const DBConnection = require("./Config/DB.js");
+const errorHandeling = require("./Middlewares/globalErrors.js");
 const APIerrors = require("./Utils/Errors.js");
-const patientRouter = require("./Routes/patientRoute");
-const doctorRouter = require("./Routes/doctorRoute");
+const patientRouter = require("./Routes/patientRoute.js");
+const doctorRouter = require("./Routes/doctorRoute.js");
 const specializationRouter = require("./Routes/specializationRoute.js");
 import { SpeedInsights } from "@vercel/speed-insights/next"
 //const organsRouter = require("./Routes/organsRoute.js");
