@@ -59,6 +59,13 @@ exports.updateDoctor = expressAsyncHandler(async (req, res, next) => {
   const doctor = await doctorModel.findByIdAndUpdate(user.doctor, req.body, {
     new: true,
   });
+  if (req.body.fullName) {
+    await userModel.findOneAndUpdate(
+      { doctor: doctor._id },
+      { fullName: req.body.fullName },
+      { new: true }
+    );
+  }
   if (!user) {
     return next(new APIerrors("The user does not exist anymore...", 404));
   }
