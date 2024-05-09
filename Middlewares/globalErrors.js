@@ -1,4 +1,4 @@
-const APIerrors = require("../Utils/Errors");
+const APIerrors = require("../Utils/errors");
 
 const handleInvalidSignature = () => {
   return new APIerrors("Invalid token, login again", 401);

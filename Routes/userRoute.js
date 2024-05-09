@@ -1,5 +1,4 @@
 const userModel = require("../Models/usersSchema.js");
-const APIerrors = require("../Utils/errors");
 const router = require("express").Router();
 const {
   signUp,

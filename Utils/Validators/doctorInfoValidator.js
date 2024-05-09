@@ -1,7 +1,7 @@
 const { check } = require("express-validator");
 const { validatorMiddleware } = require("../../Middlewares/Validator");
 const specializations = require("../../Models/specialization");
-const APIerrors = require("../Errors");
+const APIerrors = require("../errors");
 // const slugify = require("slugify");
 
 exports.doctorValidator = [

@@ -2,7 +2,7 @@ const expressAsyncHandler = require("express-async-handler");
 const Jwt = require("jsonwebtoken");
 const userModel = require("../Models/usersSchema");
 const patientModel = require("../Models/patientSchema");
-const APIerrors = require("../Utils/Errors");
+const APIerrors = require("../Utils/errors");
 // Connections Between User and Patient
 exports.connectionPatient = expressAsyncHandler(async (req, res, next) => {
   let token;
