@@ -5,7 +5,7 @@ const Jwt = require("jsonwebtoken");
 const sharp = require("sharp");
 const { uploadSingleimage } = require("../Middlewares/uploadimagesMiddleware");
 const userModel = require("../Models/usersSchema");
-const APIerrors = require("../Utils/Errors.js");
+const APIerrors = require("../Utils/errors");
 const sendEmail = require("../Utils/sendEmail");
 const { createToken, createResetToken } = require("../Utils/createToken");
 

@@ -1,5 +1,5 @@
 const multer = require("multer");
-const APIerrors = require("../Utils/Errors.js");
+const APIerrors = require("../Utils/errors");
 
 const uploadOptions = () => {
   // MemoryStorage Engine
