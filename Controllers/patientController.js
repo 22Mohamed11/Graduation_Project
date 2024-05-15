@@ -3,6 +3,7 @@ const Jwt = require("jsonwebtoken");
 const userModel = require("../Models/usersSchema");
 const patientModel = require("../Models/patientSchema");
 const APIerrors = require("../Utils/errors");
+const slugify  = require("slugify");
 // Connections Between User and Patient
 exports.connectionPatient = expressAsyncHandler(async (req, res, next) => {
   let token;
@@ -62,7 +63,9 @@ exports.updatePatient = expressAsyncHandler(async (req, res, next) => {
   if (req.body.fullName) {
     await userModel.findOneAndUpdate(
       { patient: patient._id },
-      { fullName: req.body.fullName },
+      { fullName: req.body.fullName,
+        slug:slugify(req.body.fullName)
+      },
       { new: true }
     );
   }
