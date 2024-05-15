@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
 // Define the Patient Schema
 const patientSchema = new mongoose.Schema({
   fullName: {

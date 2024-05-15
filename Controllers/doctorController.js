@@ -3,7 +3,7 @@ const Jwt = require("jsonwebtoken");
 const userModel = require("../Models/usersSchema");
 const doctorModel = require("../Models/doctorSchema");
 const APIerrors = require("../Utils/errors");
-// Connections Between User and Patient
+// Connections Between User and Doctor
 exports.connectionDoctor = expressAsyncHandler(async (req, res, next) => {
   let token;
   if (
@@ -29,12 +29,12 @@ exports.connectionDoctor = expressAsyncHandler(async (req, res, next) => {
     ...req.body,
     fullName: user.fullName,
   });
-  const updatedUser = await userModel.findByIdAndUpdate(decoded._id, req.body, {
-    new: true,
-  });
-
-  // const token = createToken(user._id);
-  res.status(201).json({ updatedUser, token });
+  const updatedUser = await userModel.findByIdAndUpdate(
+    decoded._id,
+    { doctor: userrole._id },
+    { new: true }
+  );
+  res.status(200).json({ updatedUser, token });
 });
 
 exports.updateDoctor = expressAsyncHandler(async (req, res, next) => {

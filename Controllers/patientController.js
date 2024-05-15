@@ -34,8 +34,6 @@ exports.connectionPatient = expressAsyncHandler(async (req, res, next) => {
     { patient: userrole._id },
     { new: true }
   );
-
-  // const token = createToken(user._id);
   res.status(201).json({ updatedUser, token });
 });
 
