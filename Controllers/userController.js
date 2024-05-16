@@ -38,8 +38,23 @@ exports.resizeImage = expressAsyncHandler(async (req, res, next) => {
     req.body.profileImage = fileName;
     res.json({ message: "success" });
   }
-  // next();
 });
+// router.post("upload", upload.single("image"), function (req, res) {
+//   cloudinary.uploader.upload(req.file.path, function (err, result) {
+//     if (err) {
+//       console.log(err);
+//       return res.status(500).json({
+//         success: false,
+//         message: "Error",
+//       });
+//     }
+//     res.status(200).json({
+//       success: true,
+//       message: "uploaded",
+//       data: result,
+//     });
+//   });
+// });
 
 exports.updateLoggedUserPassword = expressAsyncHandler(async (req, res) => {
   let token;
