@@ -76,3 +76,8 @@ exports.updateDoctor = expressAsyncHandler(async (req, res, next) => {
   // const token = createToken(user._id);
   res.status(201).json({ user });
 });
+
+exports.getAllDoctors = expressAsyncHandler(async (req, res) => {
+  const allDoctors = await doctorModel.find();
+  res.json({ data: allDoctors });
+});
